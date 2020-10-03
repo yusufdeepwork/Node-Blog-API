@@ -1,0 +1,19 @@
+{
+  "name": "nodeblog",
+  "version": "1.0.0",
+  "description": "node blog",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "node",
+    "react",
+    "blog"
+  ],
+  "author": "yusufdeepwork",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
