@@ -2,10 +2,7 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 
-try {
-} catch (error) {
 
-}
 mongoose.connect('mongodb+srv://node-rest-api:'+process.env.MONGO_ATLAS_PW+'@node-rest-api.oskjp.mongodb.net/<dbname>?retryWrites=true&w=majority',
     {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true},
     ()=> console.log('DB connected'));
