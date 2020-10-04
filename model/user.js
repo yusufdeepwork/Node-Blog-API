@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+// eslint-disable-next-line new-cap
 const userSchema = mongoose.Schema({
 
   name: {
@@ -15,7 +16,7 @@ const userSchema = mongoose.Schema({
     type: String,
     minLength: 5,
   },
-  lastname: {
+  lastName: {
     type: String,
     maxLength: 50,
   },
