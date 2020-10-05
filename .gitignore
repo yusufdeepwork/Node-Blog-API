@@ -117,6 +117,7 @@ dist
 
 #for security
 nodemon.json
+dev.js
 
 #eslint 
 .eslintrc.json

@@ -4,9 +4,12 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 
+const config = require('./config/key');
+
 const {User} = require('./model/user');
 
-mongoose.connect('mongodb+srv://node-rest-api:'+process.env.MONGO_ATLAS_PW+'@node-rest-api.oskjp.mongodb.net/<dbname>?retryWrites=true&w=majority',
+
+mongoose.connect(config.mongoURI,
     {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true},
     ()=> console.log('DB connected'));
 
