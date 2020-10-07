@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 
 const config = require('./config/key');
+const {auth} = require('./middleware/auth');
 
 const {User} = require('./model/user');
 const user = require('./model/user');
@@ -18,6 +19,20 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(cookieParser());
 
+
+app.get('/api/user/auth', auth, (req, res)=>{
+  const {email, name, lastname, role} =req.user;
+  res.status(200).json({
+    _id: req._id,
+    isAuth: true,
+    email,
+    name,
+    lastname,
+    role,
+  });
+});
+
+
 app.post('/api/users/register', (req, res)=>{
   const user = new User(req.body);
 
@@ -30,7 +45,7 @@ app.post('/api/users/register', (req, res)=>{
 });
 
 
-app.get('/api/user/login', (req, res)=>{
+app.post('/api/user/login', (req, res)=>{
   const {email, password} = req.body;
 
   User.findOne({email: email}, (err, user)=>{
@@ -43,7 +58,7 @@ app.get('/api/user/login', (req, res)=>{
 
     user.comparePassword(password, (err, isMatch)=>{
       if (!isMatch) {
-        return res.json({loginSuccess: false, message: 'wrog password'});
+        return res.json({loginSuccess: false, message: 'wrong password'});
       }
     });
 
@@ -61,5 +76,6 @@ app.get('/api/user/login', (req, res)=>{
     });
   });
 });
+
 
 app.listen('5000');
