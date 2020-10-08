@@ -8,6 +8,8 @@ const config = require('./config/key');
 const {auth} = require('./middleware/auth');
 
 const {User} = require('./model/user');
+
+// eslint-disable-next-line no-unused-vars
 const user = require('./model/user');
 
 
@@ -73,6 +75,15 @@ app.post('/api/user/login', (req, res)=>{
           .json({
             loginSuccess: true,
           });
+    });
+  });
+});
+
+app.get('/api/user/logout', (req, res)=>{
+  User.findByIdAndUpdate({_id: req.user._id}, {token: ''}, (err, doc)=>{
+    if (err) return res.json({succes: false, err});
+    return res.status(200).send({
+      succes: true,
     });
   });
 });
